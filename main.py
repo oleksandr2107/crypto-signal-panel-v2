@@ -9,5 +9,5 @@ def home():
     short_signals = get_price_spike_signals()
     return render_template('index.html', long_signals=long_signals, short_signals=short_signals)
 
-if name == '__main__':
+    if __name__ == '__main__':
     app.run(debug=True)
