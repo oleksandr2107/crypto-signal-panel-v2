@@ -1,14 +1,13 @@
 from flask import Flask, render_template
-from open_interest import get_oi_signals
-from price_spike import get_spike_signals
+from signals import get_bybit_open_interest, get_binance_open_interest, get_price_spike_signals
 
 app = Flask(__name__)
 
-@app.route("/")
+@app.route('/')
 def home():
-    oi_signals = get_oi_signals()
-    spike_signals = get_spike_signals()
-    return render_template("index.html", oi_signals=oi_signals, spike_signals=spike_signals)
+    long_signals = get_bybit_open_interest() + get_binance_open_interest()
+    short_signals = get_price_spike_signals()
+    return render_template('index.html', long_signals=long_signals, short_signals=short_signals)
 
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=10000)
+if name == '__main__':
+    app.run(debug=True)
