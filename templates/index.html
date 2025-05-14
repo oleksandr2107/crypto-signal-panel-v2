@@ -6,51 +6,88 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f3f3f3;
-            margin: 30px;
+            background-color: #f9f9f9;
+            margin: 40px;
         }
         h1 {
-            color: #333;
+            text-align: center;
+            color: #222;
         }
-        h2 {
-            color: #0066cc;
+        .columns {
+            display: flex;
+            gap: 40px;
+            justify-content: center;
         }
-        .section {
-            margin-bottom: 30px;
+        .column {
+            flex: 1;
+            background-color: white;
+            padding: 20px;
+            border-radius: 16px;
+            box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+        }
+        .column h2 {
+            text-align: center;
+            color: #0077cc;
         }
         .signal {
-            background-color: white;
             border-left: 5px solid #28a745;
-            padding: 10px;
-            margin: 5px 0;
-            font-size: 16px;
+            padding: 10px 15px;
+            margin: 10px 0;
+            background: #f2fdf2;
+            border-radius: 10px;
         }
         .short {
             border-left-color: #dc3545;
+            background: #fdf2f2;
+        }
+        .pair {
+            font-weight: bold;
+            font-size: 18px;
+        }
+        .price {
+            color: #666;
+            font-size: 14px;
+        }
+        .link {
+            margin-top: 5px;
+            display: inline-block;
+            font-size: 13px;
+            color: #0066cc;
+            text-decoration: none;
         }
     </style>
 </head>
 <body>
     <h1>Ласкаво просимо до панелі сигналів!</h1>
 
-    <div class="section">
-        <h2>Open Interest (LONG):</h2>
-        {% for signal in long_signals %}
-            <div class="signal">{{ signal['pair'] }} — {{ signal['signal'] }}</div>
-        {% endfor %}
-    </div>
+    <div class="columns">
+        <div class="column">
+            <h2>📈 Скринер відкритого інтересу (LONG)</h2>
+            {% for signal in long_signals %}
+                <div class="signal">
+                    <div class="pair">{{ signal.pair }} — {{ signal.signal }}</div>
+                    <div class="price">Ціна: {{ signal.price }}</div>
+                    <a class="link" href="{{ signal.link }}" target="_blank">Переглянути на Coinglass</a>
+                </div>
+            {% endfor %}
+        </div>
 
-    <div class="section">
-        <h2>Price Spikes (SHORT):</h2>
-        {% for signal in short_signals %}
-            <div class="signal short">{{ signal['pair'] }} — {{ signal['signal'] }}</div>
-        {% endfor %}
+        <div class="column">
+            <h2>📉 Скринер сплесків ціни (SHORT)</h2>
+            {% for signal in short_signals %}
+                <div class="signal short">
+                    <div class="pair">{{ signal.pair }} — {{ signal.signal }}</div>
+                    <div class="price">Ціна: {{ signal.price }}</div>
+                    <a class="link" href="{{ signal.link }}" target="_blank">Переглянути на Coinglass</a>
+                </div>
+            {% endfor %}
+        </div>
     </div>
 
     <script>
         setInterval(function() {
             window.location.reload();
-        }, 120000); // кожні 2 хвилини
+        }, 120000);
     </script>
 </body>
 </html>
