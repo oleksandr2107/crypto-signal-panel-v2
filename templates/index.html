@@ -1,23 +1,50 @@
 <!DOCTYPE html>
-<html>
+<html lang="uk">
 <head>
-    <title>Crypto Signal Panel</title>
+    <meta charset="UTF-8">
+    <title>Панель сигналів</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f3f3f3;
+            margin: 30px;
+        }
+        h1 {
+            color: #333;
+        }
+        h2 {
+            color: #0066cc;
+        }
+        .section {
+            margin-bottom: 30px;
+        }
+        .signal {
+            background-color: white;
+            border-left: 5px solid #28a745;
+            padding: 10px;
+            margin: 5px 0;
+            font-size: 16px;
+        }
+        .short {
+            border-left-color: #dc3545;
+        }
+    </style>
 </head>
 <body>
     <h1>Ласкаво просимо до панелі сигналів!</h1>
 
-    <h2>Open Interest (LONG):</h2>
-    <ul>
-        {% for signal in oi_signals %}
-            <li>{{ signal }}</li>
+    <div class="section">
+        <h2>Open Interest (LONG):</h2>
+        {% for signal in long_signals %}
+            <div class="signal">{{ signal['pair'] }} — {{ signal['signal'] }}</div>
         {% endfor %}
-    </ul>
+    </div>
 
-    <h2>Price Spikes (SHORT):</h2>
-    <ul>
-        {% for signal in spike_signals %}
-            <li>{{ signal }}</li>
+    <div class="section">
+        <h2>Price Spikes (SHORT):</h2>
+        {% for signal in short_signals %}
+            <div class="signal short">{{ signal['pair'] }} — {{ signal['signal'] }}</div>
         {% endfor %}
-    </ul>
+    </div>
 </body>
 </html>
