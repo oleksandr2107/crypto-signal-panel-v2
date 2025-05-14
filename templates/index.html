@@ -1,3 +1,126 @@
-{% for signal in long_signals %}
-  {{ signal.pair }} {{ signal.signal }}
-{% endfor %}
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>GlobaL_TredinG_SignaL</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #121212;
+            color: #e0e0e0;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 28px;
+            color: #00ccff;
+            margin-bottom: 30px;
+        }
+
+        .columns {
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .column {
+            flex: 1;
+            padding: 20px;
+            border-radius: 12px;
+            min-width: 300px;
+        }
+
+        .long-column {
+            background-color: #003300;
+        }
+
+        .short-column {
+            background-color: #330000;
+        }
+
+        .column h2 {
+            text-align: center;
+            color: #ffffff;
+            margin-bottom: 20px;
+        }
+
+        .signal {
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 10px 15px;
+            margin: 12px 0;
+            border-radius: 10px;
+            border-left: 4px solid;
+        }
+
+        .signal.long {
+            border-left-color: #00c853;
+        }
+
+        .signal.short {
+            border-left-color: #ff5252;
+        }
+
+        .pair {
+            font-size: 18px;
+            font-weight: bold;
+            color: #ffffff;
+        }
+
+        .price {
+            font-size: 14px;
+            color: #cccccc;
+            margin-top: 3px;
+        }
+
+        .link {
+            font-size: 13px;
+            color: #00bfff;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 6px;
+        }
+
+        .link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>GlobaL_TredinG_SignaL</h1>
+
+    <div class="columns">
+        <div class="column long-column">
+            <h2>📈 Скринер відкритого інтересу (LONG)</h2>
+            {% for signal in long_signals %}
+                <div class="signal long">
+                    <div class="pair">{{ signal.pair }} — {{ signal.signal }}</div>
+                    <div class="price">Ціна: {{ signal.price }}</div>
+                    <a class="link" href="{{ signal.link }}" target="_blank">Переглянути на Coinglass</a>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="column short-column">
+            <h2>📉 Скринер сплесків ціни (SHORT)</h2>
+            {% for signal in short_signals %}
+                <div class="signal short">
+                    <div class="pair">{{ signal.pair }} — {{ signal.signal }}</div>
+                    <div class="price">Ціна: {{ signal.price }}</div>
+                    <a class="link" href="{{ signal.link }}" target="_blank">Переглянути на Coinglass</a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <script>
+        setInterval(function() {
+            window.location.reload();
+        }, 120000); // Оновлення кожні 2 хвилини
+    </script>
+
+</body>
+</html>
