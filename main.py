@@ -1,3 +1,8 @@
+from flask import Flask, render_template, request
+from signals import get_bybit_open_interest, get_price_spike_signals
+
+app = Flask(__name__)
+
 @app.route('/')
 def home():
     try:
@@ -18,3 +23,6 @@ def home():
     except Exception as e:
         print("ERROR:", str(e))
         return "Internal Error", 500
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=10000)
