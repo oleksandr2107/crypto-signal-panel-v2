@@ -5,5 +5,19 @@
 </head>
 <body>
     <h1>Ласкаво просимо до панелі сигналів!</h1>
+
+    <h2>Open Interest (LONG):</h2>
+    <ul>
+        {% for signal in oi_signals %}
+            <li>{{ signal }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Price Spikes (SHORT):</h2>
+    <ul>
+        {% for signal in spike_signals %}
+            <li>{{ signal }}</li>
+        {% endfor %}
+    </ul>
 </body>
 </html>
