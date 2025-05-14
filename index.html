@@ -1,12 +1,33 @@
-
 <!DOCTYPE html>
-<html lang="uk">
+<html>
 <head>
-    <meta charset="UTF-8">
     <title>Crypto Signal Panel</title>
+    <style>
+        body { font-family: Arial; background: #121212; color: #eee; padding: 20px; }
+        h1 { color: #00ff99; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #555; padding: 10px; text-align: center; }
+        th { background-color: #222; }
+        tr:nth-child(even) { background-color: #1a1a1a; }
+    </style>
 </head>
 <body>
     <h1>Crypto Signal Panel</h1>
-    <p>Це ваша вебпанель сигналів з Binance та Bybit.</p>
+    <table>
+        <tr>
+            <th>Symbol</th>
+            <th>Exchange</th>
+            <th>Signal</th>
+            <th>Strength</th>
+        </tr>
+        {% for signal in signals %}
+        <tr>
+            <td>{{ signal.symbol }}</td>
+            <td>{{ signal.exchange }}</td>
+            <td>{{ signal.type }}</td>
+            <td>{{ signal.strength }}</td>
+        </tr>
+        {% endfor %}
+    </table>
 </body>
 </html>

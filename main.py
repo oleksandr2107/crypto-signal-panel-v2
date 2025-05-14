@@ -1,12 +1,17 @@
-
 from flask import Flask, render_template
-import threading
+import random
 
 app = Flask(__name__)
 
-@app.route("/")
+@app.route('/')
 def index():
-    return render_template("index.html")
+    # Тимчасові сигнали (замість реальних даних)
+    signals = [
+        {'symbol': 'BTCUSDT', 'exchange': 'Binance', 'type': 'LONG', 'strength': random.randint(1, 100)},
+        {'symbol': 'ETHUSDT', 'exchange': 'Bybit', 'type': 'SHORT', 'strength': random.randint(1, 100)},
+        {'symbol': 'SOLUSDT', 'exchange': 'Binance', 'type': 'LONG', 'strength': random.randint(1, 100)}
+    ]
+    return render_template('index.html', signals=signals)
 
-if __name__ == "__main__":
-    app.run(debug=False, host="0.0.0.0", port=10000)
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=10000)
