@@ -20,7 +20,7 @@ def get_price_spike_signals():
     try:
         response = requests.get(url)
         prices = response.json()
-        
+
         result = []
         for p in prices:
             if 'USDT' in p['symbol'] and float(p['price']) > 100:  # умовний сплеск
