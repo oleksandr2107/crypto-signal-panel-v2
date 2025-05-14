@@ -4,11 +4,7 @@
     <meta charset="UTF-8">
     <title>Панель сигналів</title>
     <style>
-        body {<script>
-    setInterval(function() {
-        window.location.reload();
-    }, 120000); // кожні 2 хвилини
-</script>
+        body {
             font-family: Arial, sans-serif;
             background-color: #f3f3f3;
             margin: 30px;
@@ -50,10 +46,11 @@
             <div class="signal short">{{ signal['pair'] }} — {{ signal['signal'] }}</div>
         {% endfor %}
     </div>
+
+    <script>
+        setInterval(function() {
+            window.location.reload();
+        }, 120000);
+    </script>
 </body>
 </html>
-<script>
-    setInterval(function() {
-        window.location.reload();
-    }, 120000); // кожні 2 хвилини
-</script>
