@@ -85,4 +85,32 @@
     <div class="columns">
         <div class="column">
             <h2>📈 Скринер відкритого інтересу (LONG)</h2>
-            {% for
+            {% for signal in long_signals %}
+                <div class="signal">
+                    <div class="pair">{{ signal.pair }} — {{ signal.signal }}</div>
+                    <div class="price">Ціна: {{ signal.price }}</div>
+                    <a class="link" href="{{ signal.link }}" target="_blank">Переглянути на Coinglass</a>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="column">
+            <h2>📉 Скринер сплесків ціни (SHORT)</h2>
+            {% for signal in short_signals %}
+                <div class="signal short">
+                    <div class="pair">{{ signal.pair }} — {{ signal.signal }}</div>
+                    <div class="price">Ціна: {{ signal.price }}</div>
+                    <a class="link" href="{{ signal.link }}" target="_blank">Переглянути на Coinglass</a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <script>
+        setInterval(function() {
+            window.location.reload();
+        }, 120000);
+    </script>
+
+</body>
+</html>
