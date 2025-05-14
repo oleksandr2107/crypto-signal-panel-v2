@@ -16,7 +16,19 @@
             text-align: center;
             font-size: 28px;
             color: #00ccff;
+            margin-bottom: 20px;
+        }
+
+        form {
+            text-align: center;
             margin-bottom: 30px;
+        }
+
+        input, button {
+            margin: 4px;
+            padding: 8px 10px;
+            border-radius: 6px;
+            border: none;
         }
 
         .columns {
@@ -82,6 +94,13 @@
 
     <h1>GlobaL_TredinG_SignaL</h1>
 
+    <form method="get">
+        <input type="text" name="coins" placeholder="Монети (через кому)" value="{{ coins }}">
+        <input type="number" step="0.1" name="oi_threshold" placeholder="OI поріг (%)" value="{{ oi_threshold }}">
+        <input type="number" step="0.1" name="spike_threshold" placeholder="Сплеск ціни (%)" value="{{ spike_threshold }}">
+        <button type="submit">🔍 Оновити</button>
+    </form>
+
     <div class="columns">
         <div class="column">
             <h2>📈 Скринер відкритого інтересу (LONG)</h2>
@@ -89,7 +108,7 @@
                 <div class="signal">
                     <div class="pair">{{ signal.pair }} — {{ signal.signal }}</div>
                     <div class="price">Ціна: {{ signal.price }}</div>
-                    <a class="link" href="{{ signal.link }}" target="_blank">Переглянути на Coinglass</a>
+                    <a class="link" href="https://www.coinglass.com/tv/{{ signal.pair }}" target="_blank">Переглянути на Coinglass</a>
                 </div>
             {% endfor %}
         </div>
@@ -100,7 +119,7 @@
                 <div class="signal short">
                     <div class="pair">{{ signal.pair }} — {{ signal.signal }}</div>
                     <div class="price">Ціна: {{ signal.price }}</div>
-                    <a class="link" href="{{ signal.link }}" target="_blank">Переглянути на Coinglass</a>
+                    <a class="link" href="https://www.coinglass.com/tv/{{ signal.pair }}" target="_blank">Переглянути на Coinglass</a>
                 </div>
             {% endfor %}
         </div>
